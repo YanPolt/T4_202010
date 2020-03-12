@@ -1,0 +1,16 @@
+package model.data_structures;
+
+public interface IMaxColaCP <T>{
+	
+	
+	public void agregar(T multa);
+
+	public T sacarMax();
+
+	public T darMax();
+
+	public boolean estavacia();
+
+	public int darNumeroElementos();
+
+}

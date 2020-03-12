@@ -1,0 +1,91 @@
+package model.data_structures;
+
+
+public class MaxColaCP<T extends Comparable<T>> implements IMaxColaCP<T>
+{
+	private Node<T> inicioCola;
+	private Node<T> finCola;
+	private int tamanoCola;
+
+
+	public MaxColaCP(){
+		inicioCola = null;
+		finCola = null;
+	}
+
+
+	public boolean estavacia(){
+		if(inicioCola==null)
+			return true;
+		else{
+			return false;
+		}
+	}
+
+
+	public void agregar(T multa)
+	{
+		Node<T> nuevo = new Node<>();
+		nuevo.cambiarDato(multa);
+		if(estavacia())
+		{
+			inicioCola = nuevo;
+			finCola = nuevo;
+			tamanoCola++;
+		}
+		else if(inicioCola.darSiguiente()==null)
+		{
+			inicioCola.cambiarSiguiente(nuevo);
+			tamanoCola++;
+			finCola=nuevo;
+		}
+		else
+		{
+			finCola.cambiarSiguiente(nuevo);
+			finCola = nuevo;
+			tamanoCola++;
+		}
+	}
+
+	public T sacarMax() 
+	{
+	
+
+		if(!estavacia())
+		{
+			Node<T> valorEliminado = inicioCola;
+			if(inicioCola.darSiguiente()!=null)
+			{
+				inicioCola = inicioCola.darSiguiente();
+				tamanoCola--;
+			}
+			else
+			{
+				inicioCola= null;
+				tamanoCola = 0;
+			}
+			return valorEliminado.darTvalor();
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	
+
+	public int darNumeroElementos(){
+		return tamanoCola;
+	}
+
+
+	
+	public T darMax() {
+		return inicioCola.darTvalor();
+	}
+
+
+
+
+	
+}
